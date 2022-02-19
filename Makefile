@@ -6,17 +6,13 @@ OBJDIR	:= objects
 LIBFT	:= $(OBJDIR)/libft.a
 OBJ		:= $(SRC:$(SRCS)/%.c=$(OBJDIR)/%.o)
 CC		:= gcc
-CFLAGS	:= -Wall -Wextra -I ./include -g
+CFLAGS	:= -Wall -Wextra -Werror -I ./include
 
 all: dirs $(NAME)
 
-test:
-	@mv $(OBJDIR)/libftprintf.a .
-	@make -C printfTester/ m
-
 $(NAME): $(LIBFT) $(OBJ)
-	@mv $(OBJDIR)/libft.a $(OBJDIR)/libftprintf.a
-	@ar -rcs $(OBJDIR)/$(NAME) $(OBJ)
+	@mv $(OBJDIR)/libft.a libftprintf.a
+	@ar -rcs $(NAME) $(OBJ)
 
 $(OBJDIR)/%.o: $(SRCS)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -34,7 +30,6 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -rf $(OBJDIR)
-	@rm -r libftprintf.a
 	@make -C libft fclean
 
 .PHONY: all libft dirs clean fclean
