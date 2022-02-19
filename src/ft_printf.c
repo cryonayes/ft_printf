@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aeser <aeser@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/19 16:56:28 by aeser             #+#    #+#             */
+/*   Updated: 2022/02/19 17:07:18 by aeser            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "ft_printf.h"
 #include <stdarg.h>
-
 
 static int	ft_format(va_list args, const char *format_str)
 {
@@ -12,6 +23,7 @@ static int	ft_format(va_list args, const char *format_str)
 		written += ft_print_char(va_arg(args, int));
 	else if (*format_str == 's')
 		written += ft_print_string(va_arg(args, char *));
+	/*
 	else if (*format_str == 'p')
 		written += ft_print_pointer(va_arg(args, unsigned long long));
 	else if (*format_str == 'd' || *format_str == 'i')
@@ -21,14 +33,15 @@ static int	ft_format(va_list args, const char *format_str)
 	else if (*format_str == 'X' || *format_str == 'x')
 		written += ft_print_hex(va_arg(args, int), *format_str);
 	else if (*format_str == '%')
-		written += ft_print_percent(va_arg(args, int));
+		written += ft_print_percent();
+	*/
 	return (written);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int	written;
+	int		written;
 
 	va_start(args, format);
 	written = 0;
@@ -36,18 +49,18 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			written += handle_format(*(format + 1));
+			written += ft_format(args, (format + 1));
 			format++;
 		}
 		else
-			written += print_char(*format);
+			written += ft_print_char(*format);
 		format++;
 	}
 	va_end(args);
 	return (written);
 }
 
-int	main()
+int	main(void)
 {
-
+	ft_printf("Heyy %s", "Ayberk");
 }

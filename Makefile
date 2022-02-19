@@ -13,8 +13,8 @@ all: dirs $(NAME)
 $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
 
-$(OBJ): $(SRC)
-	$(CC) $(CFLAGS) -c $(SRC) -o $(OBJ)
+$(OBJDIR)/%.o: $(SRCS)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	make -C libft

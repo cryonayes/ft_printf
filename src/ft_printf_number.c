@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_number.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeser <aeser@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 16:56:39 by aeser             #+#    #+#             */
-/*   Updated: 2022/02/19 16:56:39 by aeser            ###   ########.fr       */
+/*   Created: 2022/02/19 16:56:35 by aeser             #+#    #+#             */
+/*   Updated: 2022/02/19 16:56:35 by aeser            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-int	ft_print_char(const int chr)
+int	ft_print_number(int nbr)
 {
-	write(1, &chr, 1);
-	return (1);
-}
+	int		written;
+	char	*number;
 
-int	ft_print_string(const char *str)
-{
-	int	printed;
-
-	if (str == NULL)
-		return (ft_print_string("(null)"));
-	printed = 0;
-	while (*str)
-	{
-		printed += ft_print_char(*str);
-		str++;
-	}
-	return (printed);
-}
-
-int	ft_print_percent(void)
-{
-	return (ft_print_char('%'));
+	written = 0;
+	number = ft_itoa(nbr);
+	written = ft_print_string(number);
+	free(number);
+	return (written);
 }
