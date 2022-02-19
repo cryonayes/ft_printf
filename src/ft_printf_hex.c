@@ -6,14 +6,14 @@
 /*   By: aeser <aeser@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:07:55 by aeser             #+#    #+#             */
-/*   Updated: 2022/02/19 18:10:00 by aeser            ###   ########.fr       */
+/*   Updated: 2022/02/19 18:30:40 by aeser            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "printf.h"
 
-static int	ft_hex_len(unsigned long long number)
+static int	ft_hex_len(unsigned	int number)
 {
 	int	count;
 
@@ -26,7 +26,7 @@ static int	ft_hex_len(unsigned long long number)
 	return (count);
 }
 
-int	ft_print_hex(unsigned long long number, char format)
+int	ft_print_hex(unsigned int number, const char format)
 {
 	if (number == 0)
 	{

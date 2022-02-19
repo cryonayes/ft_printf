@@ -11,7 +11,8 @@ CFLAGS	:= -Wall -Wextra -Werror -I ./include -g
 all: dirs $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
+	mv $(OBJDIR)/libft.a $(OBJDIR)/libftprintf.a
+	ar -rcs $(OBJDIR)/libftprintf.a $(OBJ)
 
 $(OBJDIR)/%.o: $(SRCS)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
