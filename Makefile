@@ -6,11 +6,16 @@ OBJDIR	:= objects
 LIBFT	:= $(OBJDIR)/libft.a
 OBJ		:= $(SRC:$(SRCS)/%.c=$(OBJDIR)/%.o)
 CC		:= gcc
-CFLAGS	:= -Wall -Wextra -Werror -I ./include -g
+CFLAGS	:= -Wall -Wextra -I ./include -g
 
 all: dirs $(NAME)
 
+test: all
+	@mv $(OBJDIR)/libftprintf.a .
+	make -C printfTester/ m
+
 $(NAME): $(LIBFT) $(OBJ)
+	# $(CC) $(OBJ) $(LIBFT) -o $(NAME)
 	mv $(OBJDIR)/libft.a $(OBJDIR)/libftprintf.a
 	ar -rcs $(OBJDIR)/libftprintf.a $(OBJ)
 
