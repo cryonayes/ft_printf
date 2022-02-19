@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_hex.c                                    :+:      :+:    :+:   */
+/*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeser <aeser@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 18:07:55 by aeser             #+#    #+#             */
-/*   Updated: 2022/02/19 23:22:41 by aeser            ###   ########.fr       */
+/*   Created: 2022/02/19 23:23:00 by aeser             #+#    #+#             */
+/*   Updated: 2022/02/20 00:01:56 by aeser            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-static int	ft_hex_len(unsigned	int number)
+static int	ft_pointer_len(unsigned	long number)
 {
 	int	count;
 
@@ -28,17 +28,14 @@ static int	ft_hex_len(unsigned	int number)
 	return (count);
 }
 
-int	ft_print_hex(unsigned int number, const char format)
+static int	ft_print_pointer(unsigned long long number, const char format)
 {
 	if (number == 0)
-	{
-		ft_putstr_fd("0", 1);
-		return (1);
-	}
+		return (ft_print_char('0'));
 	if (number >= 16)
 	{
-		ft_print_hex(number / 16, format);
-		ft_print_hex(number % 16, format);
+		ft_print_pointer(number / 16, format);
+		ft_print_pointer(number % 16, format);
 	}
 	else
 	{
@@ -52,6 +49,15 @@ int	ft_print_hex(unsigned int number, const char format)
 				ft_putchar_fd((number - 10 + 'A'), 1);
 		}
 	}
-	return (ft_hex_len(number));
+	return (ft_pointer_len(number));
 }
 
+int	ft_print_ptr(unsigned long long addr)
+{
+	int	written;
+
+	written = 0;
+	written += ft_print_string("0x");
+	written += ft_print_pointer(addr, 'x');
+	return (written);
+}

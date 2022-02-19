@@ -1,4 +1,4 @@
-NAME	:= ft_printf
+NAME	:= libftprintf.a
 SRCS	:= src
 SRC		:= $(wildcard $(SRCS)/*.c)
 
@@ -10,30 +10,31 @@ CFLAGS	:= -Wall -Wextra -I ./include -g
 
 all: dirs $(NAME)
 
-test: all
+test:
 	@mv $(OBJDIR)/libftprintf.a .
-	make -C printfTester/ m
+	@make -C printfTester/ m
 
 $(NAME): $(LIBFT) $(OBJ)
-	# $(CC) $(OBJ) $(LIBFT) -o $(NAME)
-	mv $(OBJDIR)/libft.a $(OBJDIR)/libftprintf.a
-	ar -rcs $(OBJDIR)/libftprintf.a $(OBJ)
+	@mv $(OBJDIR)/libft.a $(OBJDIR)/libftprintf.a
+	@ar -rcs $(OBJDIR)/$(NAME) $(OBJ)
 
 $(OBJDIR)/%.o: $(SRCS)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
-	make -C libft
+	@make -C libft
 
 dirs:
 	@mkdir -p objects
 
 clean:
-	rm -rf $(OBJDIR)
-	make -C libft clean
+	rm -f $(OBJDIR)/*.o
+	@make -C libft clean
 
 fclean: clean
-	rm -f $(NAME)
-	make -C libft fclean
+	@rm -f $(NAME)
+	@rm -rf $(OBJDIR)
+	@rm -r libftprintf.a
+	@make -C libft fclean
 
 .PHONY: all libft dirs clean fclean

@@ -6,7 +6,7 @@
 /*   By: aeser <aeser@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 16:56:35 by aeser             #+#    #+#             */
-/*   Updated: 2022/02/19 18:09:25 by aeser            ###   ########.fr       */
+/*   Updated: 2022/02/19 23:25:20 by aeser            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_print_number(int nbr)
 	return (written);
 }
 
-int	ft_num_len(unsigned	int num)
+static int	ft_num_len(unsigned	int num)
 {
 	int	len;
 
@@ -38,7 +38,7 @@ int	ft_num_len(unsigned	int num)
 	return (len);
 }
 
-char	*ft_uitoa(unsigned int n)
+static char	*ft_uitoa(unsigned int n)
 {
 	char	*num;
 	int		len;
