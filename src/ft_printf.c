@@ -6,10 +6,11 @@
 /*   By: aeser <aeser@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 16:56:28 by aeser             #+#    #+#             */
-/*   Updated: 2022/02/19 17:07:18 by aeser            ###   ########.fr       */
+/*   Updated: 2022/02/19 18:09:49 by aeser            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
 #include "ft_printf.h"
 #include <stdarg.h>
@@ -23,18 +24,16 @@ static int	ft_format(va_list args, const char *format_str)
 		written += ft_print_char(va_arg(args, int));
 	else if (*format_str == 's')
 		written += ft_print_string(va_arg(args, char *));
-	/*
-	else if (*format_str == 'p')
-		written += ft_print_pointer(va_arg(args, unsigned long long));
-	else if (*format_str == 'd' || *format_str == 'i')
-		written += ft_print_number(va_arg(args, int));
-	else if (*format_str == 'u')
-		written += ft_print_unsigned(va_arg(args, int));
 	else if (*format_str == 'X' || *format_str == 'x')
-		written += ft_print_hex(va_arg(args, int), *format_str);
+		written += ft_print_hex(va_arg(args, unsigned long long), *format_str);
 	else if (*format_str == '%')
 		written += ft_print_percent();
-	*/
+	else if (*format_str == 'd' || *format_str == 'i')
+		written += ft_print_number(va_arg(args, int));
+	else if (*format_str == 'p')
+		written += ft_print_ptr(va_arg(args, unsigned long long));
+	else if (*format_str == 'u')
+		written += ft_print_unsigned(va_arg(args, int));
 	return (written);
 }
 
@@ -58,9 +57,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (written);
-}
-
-int	main(void)
-{
-	ft_printf("Heyy %s", "Ayberk");
 }
