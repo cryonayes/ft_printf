@@ -8,9 +8,12 @@ OBJ		:= $(SRC:$(SRCS)/%.c=$(OBJDIR)/%.o)
 CC		:= cc
 CFLAGS	:= -Wall -Wextra -Werror -I ./include
 
-$(NAME): $(LIBFT) $(OBJ)
+$(NAME): $(OBJDIR) $(LIBFT) $(OBJ)
 	@mv $(OBJDIR)/libft.a libftprintf.a
 	@ar -rcs $(NAME) $(OBJ)
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
 
 $(LIBFT):
 	@make -C libft
@@ -18,10 +21,7 @@ $(LIBFT):
 $(OBJDIR)/%.o: $(SRCS)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
-
-all: $(OBJDIR) $(NAME)
+all: $(NAME)
 
 clean:
 	@rm -f $(OBJDIR)/*.o
