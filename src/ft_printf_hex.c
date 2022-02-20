@@ -6,7 +6,7 @@
 /*   By: aeser <aeser@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 18:07:55 by aeser             #+#    #+#             */
-/*   Updated: 2022/02/19 23:22:41 by aeser            ###   ########.fr       */
+/*   Updated: 2022/02/20 14:00:02 by aeser            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,3 @@ int	ft_print_hex(unsigned int number, const char format)
 	}
 	return (ft_hex_len(number));
 }
-

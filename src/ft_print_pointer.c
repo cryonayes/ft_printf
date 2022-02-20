@@ -6,7 +6,7 @@
 /*   By: aeser <aeser@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 23:23:00 by aeser             #+#    #+#             */
-/*   Updated: 2022/02/20 00:47:52 by aeser            ###   ########.fr       */
+/*   Updated: 2022/02/20 14:03:45 by aeser            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ int	ft_print_ptr(unsigned long long addr)
 	int	written;
 
 	written = 0;
-	if (addr == 0)
-		return (ft_print_string("(nil)"));
 	written += ft_print_string("0x");
-	written += ft_print_pointer(addr);
+	if (addr == 0)
+		written += ft_print_char('0');
+	else
+		written += ft_print_pointer(addr);
 	return (written);
 }
